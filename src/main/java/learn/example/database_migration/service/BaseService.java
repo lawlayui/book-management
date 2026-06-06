@@ -13,7 +13,7 @@ public abstract class BaseService<T extends BaseEntity, ID, RESP extends BaseDTO
     protected JpaRepository<T, ID> repository; 
 
     public abstract T mapToEntity(REQ request);
-    public abstract RESP mapToResponse(T response);
+    public abstract RESP mapToResponse(T entity);
     public abstract List<RESP> mapToResponse(List<T> response);
 
     public RESP findById(ID id) throws ResourceNotFound {
