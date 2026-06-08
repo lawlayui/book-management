@@ -18,13 +18,13 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 @NoArgsConstructor
-public class BaseEntity {
-    public BaseEntity(Long id) {
+public abstract class BaseEntity<ID> {
+    public BaseEntity(ID id) {
         this.id = id;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private ID id;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

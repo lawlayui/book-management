@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Book extends BaseEntity{
+public class Book extends BaseEntity<Long>{
     @Builder
     public Book(Long id, String title, String description, String author, int year, BigDecimal price, int stock) {
         super(id);
