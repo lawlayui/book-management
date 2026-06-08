@@ -1,4 +1,4 @@
-package learn.example.database_migration.api.dto.request;
+package com.lawlayui.library.api.dto.request;
 
 import java.math.BigDecimal;
 

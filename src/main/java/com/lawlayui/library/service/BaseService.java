@@ -1,14 +1,14 @@
-package learn.example.database_migration.service;
+package com.lawlayui.library.service;
 
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import learn.example.database_migration.api.dto.request.BaseRequestDTO;
-import learn.example.database_migration.api.dto.response.BaseResponseDTO;
-import learn.example.database_migration.entity.BaseEntity;
-import learn.example.database_migration.exception.ResourceNotFound;
+import com.lawlayui.library.api.dto.request.BaseRequestDTO;
+import com.lawlayui.library.api.dto.response.BaseResponseDTO;
+import com.lawlayui.library.entity.BaseEntity;
+import com.lawlayui.library.exception.ResourceNotFound;
 
 public abstract class BaseService<T extends BaseEntity<ID>, ID, RESP extends BaseResponseDTO<ID>, REQ extends BaseRequestDTO> {
     protected JpaRepository<T, ID> repository; 

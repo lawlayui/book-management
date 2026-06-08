@@ -1,15 +1,15 @@
-package learn.example.database_migration.service;
+package com.lawlayui.library.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import learn.example.database_migration.api.dto.request.BooksRequestDTO;
-import learn.example.database_migration.api.dto.response.BooksResponseDTO;
-import learn.example.database_migration.entity.Book;
-import learn.example.database_migration.exception.ResourceNotFound;
-import learn.example.database_migration.repository.BooksRepository;
+import com.lawlayui.library.api.dto.request.BooksRequestDTO;
+import com.lawlayui.library.api.dto.response.BooksResponseDTO;
+import com.lawlayui.library.entity.Book;
+import com.lawlayui.library.exception.ResourceNotFound;
+import com.lawlayui.library.repository.BooksRepository;
 
 @Service
 public class BooksService extends BaseService<Book, Long, BooksResponseDTO, BooksRequestDTO>{

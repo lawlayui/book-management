@@ -1,4 +1,4 @@
-package learn.example.database_migration.entity;
+package com.lawlayui.library.entity;
 
 
 import java.math.BigDecimal;

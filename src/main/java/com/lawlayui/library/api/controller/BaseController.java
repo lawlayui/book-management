@@ -1,4 +1,4 @@
-package learn.example.database_migration.api.controller;
+package com.lawlayui.library.api.controller;
 
 import java.util.List;
 
@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lawlayui.library.api.dto.request.BaseRequestDTO;
+import com.lawlayui.library.api.dto.response.BaseResponseDTO;
+import com.lawlayui.library.entity.BaseEntity;
+import com.lawlayui.library.exception.ResourceNotFound;
+import com.lawlayui.library.service.BaseService;
+
 import jakarta.validation.constraints.Max;
-import learn.example.database_migration.api.dto.request.BaseRequestDTO;
-import learn.example.database_migration.api.dto.response.BaseResponseDTO;
-import learn.example.database_migration.entity.BaseEntity;
-import learn.example.database_migration.exception.ResourceNotFound;
-import learn.example.database_migration.service.BaseService;
 
 public abstract class BaseController<T extends BaseEntity<ID>, ID, RESP extends BaseResponseDTO<ID>, REQ extends BaseRequestDTO> {
     protected BaseService<T, ID, RESP, REQ> service;

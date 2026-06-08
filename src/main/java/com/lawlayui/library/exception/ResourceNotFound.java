@@ -1,4 +1,4 @@
-package learn.example.database_migration.exception;
+package com.lawlayui.library.exception;
 
 public class ResourceNotFound extends Exception{
     public ResourceNotFound(String message) {

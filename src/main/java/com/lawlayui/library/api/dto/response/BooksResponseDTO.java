@@ -1,4 +1,4 @@
-package learn.example.database_migration.api.dto.response;
+package com.lawlayui.library.api.dto.response;
 
 import java.math.BigDecimal;
 import java.time.Instant;
