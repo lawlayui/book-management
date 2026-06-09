@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +20,11 @@ import com.lawlayui.library.service.BaseService;
 
 import jakarta.validation.constraints.Max;
 
-public abstract class BaseController<T extends BaseEntity<ID>, ID, RESP extends BaseResponseDTO<ID>, REQ extends BaseRequestDTO> {
-    protected BaseService<T, ID, RESP, REQ> service;
+public abstract class BaseController<T extends BaseEntity<ID>, ID, RESP extends BaseResponseDTO<ID>, REQ extends BaseRequestDTO, UREQ extends BaseRequestDTO> {
+    protected BaseService<T, ID, RESP, REQ, UREQ> service;
 
-    @GetMapping("/")
-    public ResponseEntity<List<RESP>> getAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") @Max(43) int size) {
+    @GetMapping
+    public ResponseEntity<List<RESP>> getAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") @Max(value = 43, message = "Max for size is 43") int size) {
         List<RESP> responses = service.findAll(PageRequest.of(page, size));
         return ResponseEntity
             .ok(responses);
@@ -35,9 +36,16 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID, RESP extends 
         return ResponseEntity.ok(resp);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<RESP> createEntity(@RequestBody REQ request) {
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(service.save(request));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<RESP> updateEntity(@PathVariable ID id, @RequestBody UREQ request) throws ResourceNotFound{
+        RESP resp = service.update(id, request);
+        return ResponseEntity.status(200)
+            .body(resp);
     }
 }

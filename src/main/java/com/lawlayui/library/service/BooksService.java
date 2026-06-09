@@ -6,16 +6,19 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.lawlayui.library.api.dto.request.BooksRequestDTO;
+import com.lawlayui.library.api.dto.request.BooksUpdateRequestDTO;
 import com.lawlayui.library.api.dto.response.BooksResponseDTO;
 import com.lawlayui.library.entity.Book;
 import com.lawlayui.library.exception.ResourceNotFound;
 import com.lawlayui.library.repository.BooksRepository;
+import com.lawlayui.library.util.interface_mapper.BookMapper;
 
 @Service
-public class BooksService extends BaseService<Book, Long, BooksResponseDTO, BooksRequestDTO>{
-    
-    public BooksService(BooksRepository repository) {
+public class BooksService extends BaseService<Book, Long, BooksResponseDTO, BooksRequestDTO, BooksUpdateRequestDTO>{
+    private BookMapper bookMapper;
+    public BooksService(BooksRepository repository, BookMapper bookMapper) {
         this.repository = repository;
+        this.bookMapper = bookMapper;
     }
     public Book mapToEntity(BooksRequestDTO request) {
         Book book = new Book(null, request.getTitle(), request.getDescription(), request.getAuthor(), request.getYear(), request.getPrice(), request.getStock());
@@ -42,11 +45,13 @@ public class BooksService extends BaseService<Book, Long, BooksResponseDTO, Book
         return booksResponse;
     }
 
-    public void updateTitle(BooksRequestDTO request, Long id) throws ResourceNotFound {
+    @Override
+    public BooksResponseDTO update(Long id, BooksUpdateRequestDTO request) throws ResourceNotFound {
         Book book = repository.findById(id)
-            .orElseThrow(() -> new ResourceNotFound("Resource with id: " + id + "not found"));
+            .orElseThrow(() -> new ResourceNotFound("Resource with id: " + id + " not found"));
 
-        book.setTitle(request.getTitle());
+        bookMapper.udpateBookFromDto(request, book);
         repository.save(book);
+        return mapToResponse(book);
     }
 }

@@ -1,5 +1,6 @@
 package com.lawlayui.library.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
@@ -10,7 +11,7 @@ import com.lawlayui.library.api.dto.response.BaseResponseDTO;
 import com.lawlayui.library.entity.BaseEntity;
 import com.lawlayui.library.exception.ResourceNotFound;
 
-public abstract class BaseService<T extends BaseEntity<ID>, ID, RESP extends BaseResponseDTO<ID>, REQ extends BaseRequestDTO> {
+public abstract class BaseService<T extends BaseEntity<ID>, ID, RESP extends BaseResponseDTO<ID>, REQ extends BaseRequestDTO, UREQ extends BaseRequestDTO> {
     protected JpaRepository<T, ID> repository; 
 
     public abstract T mapToEntity(REQ request);
@@ -34,4 +35,6 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID, RESP extends Bas
     public void delete(ID id) {
         repository.deleteById(id);
     }
+
+    public abstract RESP update(ID id, UREQ request) throws ResourceNotFound;
 }
