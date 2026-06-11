@@ -50,7 +50,7 @@ public class BooksService extends BaseService<Book, Long, BooksResponseDTO, Book
         Book book = repository.findById(id)
             .orElseThrow(() -> new ResourceNotFound("Resource with id: " + id + " not found"));
 
-        bookMapper.udpateBookFromDto(request, book);
+        bookMapper.udpateBookFromDto(request, book);;
         repository.save(book);
         return mapToResponse(book);
     }
