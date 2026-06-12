@@ -9,11 +9,11 @@ import com.lawlayui.library.api.dto.request.BaseRequestDTO;
 import com.lawlayui.library.api.dto.response.BaseResponseDTO;
 import com.lawlayui.library.entity.BaseEntity;
 import com.lawlayui.library.exception.ResourceNotFound;
-import com.lawlayui.library.util.mapper.BaseMapper;
+import com.lawlayui.library.util.mapper.GenericMapper;
 
 public abstract class BaseService<T extends BaseEntity<ID>, ID, RESP extends BaseResponseDTO<ID>, REQ extends BaseRequestDTO, UREQ extends BaseRequestDTO> {
     protected JpaRepository<T, ID> repository; 
-    protected BaseMapper<ID, T, REQ, UREQ, RESP> mapper;
+    protected GenericMapper<ID, T, REQ, UREQ, RESP> mapper;
 
     public RESP findById(ID id) throws ResourceNotFound {
         T result = repository.findById(id)
