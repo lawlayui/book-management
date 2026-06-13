@@ -1,13 +1,13 @@
-package learn.example.database_migration;
+package com.lawlayui.library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DatabaseMigrationApplication {
+public class LibraryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DatabaseMigrationApplication.class, args);
+		SpringApplication.run(LibraryApplication.class, args);
 	}
 
 }
