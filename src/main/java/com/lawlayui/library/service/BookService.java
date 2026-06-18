@@ -1,7 +1,5 @@
 package com.lawlayui.library.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -25,14 +23,6 @@ public class BookService extends BaseService<Book, Long, BookResponseDTO, BookRe
     @Override
     public String getCacheNames() {
         return "books";
-    }
-
-    public List<BookResponseDTO> mapToResponse(List<Book> books){
-        List<BookResponseDTO> booksResponse = books.stream()
-            .map((book) -> new BookResponseDTO(book.getId(), book.getCreatedAt(), book.getUpdateAt(), book.getTitle(), book.getDescription(), book.getAuthor(), book.getPrice(), book.getStock(), book.getPublication_year()))
-            .collect(Collectors.toList());
-
-        return booksResponse;
     }
 
     @Transactional
