@@ -33,6 +33,7 @@ public class User extends BaseEntity<Long>{
     @Column(length = 255)
     private String name;
 
+    @Column(unique = true)
     private String email;
     
     private String password;
