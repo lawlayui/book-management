@@ -1,6 +1,5 @@
 package com.lawlayui.library.api.dto.request;
 
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,16 +12,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreateRequest extends BaseRequestDTO{
-    @NotBlank(message = "name cannot be filled with null")
-    @Size(min = 3, max = 255)
-    private String name;
-
-    @NotBlank(message = "email cannot be filled with null")
-    @Email(message = "invalid email")
+public class UserLoginRequest extends BaseRequestDTO{
+    @NotBlank(message = "email cannot be empty")
+    @Email(message = "not valid email")
     private String email;
 
-    @NotBlank(message = "password cannot be filled with null")
-    @Size(min = 7, max = 255)
+    @Size(max = 255, min = 7)
+    @NotBlank(message = "password cannot be empty")
     private String password;
 }

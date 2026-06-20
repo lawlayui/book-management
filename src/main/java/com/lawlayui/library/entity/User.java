@@ -17,8 +17,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class User extends BaseEntity<Long>{
     public enum Role {
-        ADMIN,
-        USER
+        ROLE_ADMIN,
+        ROLE_USER
     }
 
     @Builder
