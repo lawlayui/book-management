@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.lawlayui.library.api.dto.request.UserCreateRequest;
-import com.lawlayui.library.api.dto.request.UserLoginRequest;
+import com.lawlayui.library.api.dto.request.AuthLoginRequest;
 import com.lawlayui.library.entity.User;
 import com.lawlayui.library.entity.User.Role;
 import com.lawlayui.library.exception.EmailAlreadyExistsException;
@@ -27,7 +27,7 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public String login(UserLoginRequest userLoginRequest){
+    public String login(AuthLoginRequest userLoginRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLoginRequest.getEmail(), userLoginRequest.getPassword()));
     
         return tokenService.generateToken(authentication);

@@ -17,7 +17,7 @@ public class UserResponse extends BaseResponseDTO<Long>{
 
     @Builder
     public UserResponse(Long id, String name, String email, String password, Role role, LocalDateTime updateAt) {
-        super(id, Instant.now(), LocalDateTime.now(), updateAt);
+        super(id, Instant.now(), LocalDateTime.now(), updateAt, "success");
 
         this.name = name;
         this.email = email;

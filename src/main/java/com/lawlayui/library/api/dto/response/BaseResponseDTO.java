@@ -19,4 +19,5 @@ public class BaseResponseDTO<ID> {
     protected Instant timestamp;
     protected LocalDateTime createdAt;
     protected LocalDateTime updateAt; 
+    protected String message;
 }

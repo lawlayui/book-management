@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLoginRequest extends BaseRequestDTO{
+public class AuthLoginRequest extends BaseRequestDTO{
     @NotBlank(message = "email cannot be empty")
     @Email(message = "not valid email")
     private String email;

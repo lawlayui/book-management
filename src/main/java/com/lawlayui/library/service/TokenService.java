@@ -2,6 +2,7 @@ package com.lawlayui.library.service;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
@@ -22,16 +23,16 @@ public class TokenService {
     public String generateToken(Authentication authentication) {
         Instant now = Instant.now();
 
-        String scope = authentication.getAuthorities().stream()
+        List<String> roles = authentication.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority)
-            .collect(Collectors.joining(" "));
+            .collect(Collectors.toList());
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
-        .issuer("sefl")
+        .issuer("self")
         .issuedAt(now)
         .expiresAt(now.plus(1, ChronoUnit.HOURS))
         .subject(authentication.getName())
-        .claim("roles", scope)
+        .claim("roles", roles)
         .build();
 
         return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

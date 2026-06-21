@@ -6,6 +6,7 @@ import com.lawlayui.library.api.dto.request.UserCreateRequest;
 import com.lawlayui.library.api.dto.request.UserUpdateRequest;
 import com.lawlayui.library.api.dto.response.UserResponse;
 import com.lawlayui.library.entity.User;
+import com.lawlayui.library.entity.User.Role;
 import com.lawlayui.library.exception.ResourceNotFound;
 import com.lawlayui.library.repository.UserRepository;
 import com.lawlayui.library.util.mapper.UserMapper;
@@ -34,5 +35,12 @@ public class UserService extends BaseService<User, Long, UserResponse, UserCreat
         mapper.updateEntityFromDto(request, user);
         return mapper.entityToResponse(repository.save(user));
     }
-    
+
+    @Override
+    public UserResponse save(UserCreateRequest entity) {
+        User user = mapper.requestToEntity(entity);
+        user.setRole(Role.ROLE_ADMIN);
+
+        return mapper.entityToResponse(repository.save(user));
+    }
 }
