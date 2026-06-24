@@ -13,20 +13,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserResponse extends BaseResponseDTO<Long>{
+public class UserResponse extends BaseResponse<Long>{
 
     @Builder
-    public UserResponse(Long id, String name, String email, String password, Role role, LocalDateTime updateAt) {
+    public UserResponse(Long id, String name, String email, Role role, LocalDateTime updateAt) {
         super(id, Instant.now(), LocalDateTime.now(), updateAt, "success");
 
         this.name = name;
         this.email = email;
-        this.password = password;
         this.role = role;
     }
 
     private String name;
     private String email;
-    private String password;
     private Role role;
 }

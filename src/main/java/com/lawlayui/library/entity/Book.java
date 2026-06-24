@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,4 +43,8 @@ public class Book extends BaseEntity<Long>{
     private BigDecimal price;
 
     private Long stock;
+    
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    private User user;
 }

@@ -1,4 +1,4 @@
-package com.lawlayui.library.service;
+package com.lawlayui.library.util.security;
 
 import static org.springframework.security.core.userdetails.User.builder;
 import org.springframework.security.core.userdetails.UserDetails;

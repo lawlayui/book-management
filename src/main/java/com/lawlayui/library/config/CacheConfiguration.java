@@ -11,6 +11,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.lawlayui.library.util.cache.BaseCacheResolver;
 
 
 @Configuration

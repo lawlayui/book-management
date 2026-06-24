@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreateRequest extends BaseRequestDTO{
+public class UserCreateRequest extends BaseRequest{
     @NotBlank(message = "name cannot be filled with null")
     @Size(min = 3, max = 255)
     private String name;

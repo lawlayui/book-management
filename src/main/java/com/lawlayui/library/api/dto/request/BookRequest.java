@@ -15,10 +15,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BookRequestDTO extends BaseRequestDTO{
+public class BookRequest extends BaseRequest{
 
     @Builder
-    public BookRequestDTO(String title,
+    public BookRequest(String title,
             String description, String author, BigDecimal price, Long stock, int pubication_year) {
         this.pubication_year = pubication_year;
         this.title = title;

@@ -6,11 +6,11 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
-import com.lawlayui.library.api.dto.request.BaseRequestDTO;
-import com.lawlayui.library.api.dto.response.BaseResponseDTO;
+import com.lawlayui.library.api.dto.request.BaseRequest;
+import com.lawlayui.library.api.dto.response.BaseResponse;
 import com.lawlayui.library.entity.BaseEntity;
 
-public interface GenericMapper<ID, E extends BaseEntity<ID>, Req extends BaseRequestDTO, UReq extends BaseRequestDTO, Res extends BaseResponseDTO<ID>>{
+public interface GenericMapper<ID, E extends BaseEntity<ID>, Req extends BaseRequest, UReq extends BaseRequest, Res extends BaseResponse<ID>>{
     E requestToEntity(Req request);
 
     Res entityToResponse(E entity);

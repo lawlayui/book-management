@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class BookUpdateRequestDTO extends BaseRequestDTO{
+public class BookUpdateRequest extends BaseRequest{
     
     @Size(max = 255, message = "The maximum title limit is 255 characters")
     private String title;

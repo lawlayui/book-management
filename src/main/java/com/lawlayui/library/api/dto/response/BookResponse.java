@@ -6,13 +6,15 @@ import java.time.LocalDateTime;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class BookResponseDTO extends BaseResponseDTO<Long>{
+@NoArgsConstructor
+public class BookResponse extends BaseResponse<Long>{
     @Builder
-    public BookResponseDTO(Long id, LocalDateTime createdAt, LocalDateTime updateAt, String title, String description, String author, BigDecimal price, Long stock, int publication_year) {
+    public BookResponse(Long id, LocalDateTime createdAt, LocalDateTime updateAt, String title, String description, String author, BigDecimal price, Long stock, int publication_year) {
         super(id, Instant.now(), createdAt, updateAt, "succes");
         this.title = title;
         this.publication_year = publication_year;

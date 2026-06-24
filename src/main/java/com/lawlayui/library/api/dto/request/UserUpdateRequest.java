@@ -14,7 +14,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class UserUpdateRequest extends BaseRequestDTO{
+public class UserUpdateRequest extends BaseRequest{
     @Size(max = 255, message = "the maximum name limit is 255 characters")
     private String name;
 

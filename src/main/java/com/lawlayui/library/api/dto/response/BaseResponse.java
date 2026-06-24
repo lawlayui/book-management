@@ -14,7 +14,7 @@ import java.time.Instant;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseResponseDTO<ID> {
+public class BaseResponse<ID> {
     protected ID id;
     protected Instant timestamp;
     protected LocalDateTime createdAt;

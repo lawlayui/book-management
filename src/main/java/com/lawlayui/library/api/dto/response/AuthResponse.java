@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthResponse extends BaseResponseDTO<Long>{
+public class AuthResponse extends BaseResponse<Long>{
     public AuthResponse(Long id, String token) {
         super(id, Instant.now(), LocalDateTime.now(), LocalDateTime.now(), "success login");
         this.token = token;

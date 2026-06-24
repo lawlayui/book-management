@@ -1,4 +1,4 @@
-package com.lawlayui.library.service;
+package com.lawlayui.library.util.security;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -20,7 +20,7 @@ public class TokenService {
         this.jwtEncoder = jwtEncoder;
     }
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication, String id) {
         Instant now = Instant.now();
 
         List<String> roles = authentication.getAuthorities().stream()
@@ -30,9 +30,25 @@ public class TokenService {
         JwtClaimsSet claims = JwtClaimsSet.builder()
         .issuer("self")
         .issuedAt(now)
-        .expiresAt(now.plus(1, ChronoUnit.HOURS))
+        .expiresAt(now.plus(15, ChronoUnit.MINUTES))
         .subject(authentication.getName())
         .claim("roles", roles)
+        .claim("uuid", id)
+        .build();
+
+        return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+    }
+
+    public String generateToken(String email, List<String> roles, String id) {
+        Instant now = Instant.now();
+
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+        .issuer("self")
+        .issuedAt(now)
+        .expiresAt(now.plus(15, ChronoUnit.MINUTES))
+        .subject(email)
+        .claim("roles", roles)
+        .claim("uuid", id)
         .build();
 
         return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

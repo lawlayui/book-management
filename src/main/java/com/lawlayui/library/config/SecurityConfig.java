@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.lawlayui.library.service.CustomUserDetailService;
+import com.lawlayui.library.util.security.CustomUserDetailService;
 
 @Configuration
 public class SecurityConfig {
@@ -28,14 +28,20 @@ public class SecurityConfig {
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
         .csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST,"/api/users").hasAuthority("ROLE_ADMIN")
-        .requestMatchers(HttpMethod.GET, "/api/users").hasAuthority("ROLE_USER")
-        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-        .anyRequest().authenticated())
-        .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> 
-            jwt.decoder(jwtDecoder)
-            .jwtAuthenticationConverter(jwtAuthenticationConverter())
+
+        .authorizeHttpRequests(authorize -> 
+            authorize
+            .requestMatchers(HttpMethod.POST,"/api/users").hasAuthority("ROLE_ADMIN")
+            .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+            .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+            .anyRequest().authenticated())
+
+        .oauth2ResourceServer(oauth2 -> 
+            oauth2
+            .jwt(jwt -> 
+                jwt
+                .decoder(jwtDecoder)
+                .jwtAuthenticationConverter(jwtAuthenticationConverter())
         ));
 
         return http.build();
